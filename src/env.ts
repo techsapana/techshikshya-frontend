@@ -1,0 +1,1 @@
+export const DOMAIN = "http://api.techshikshya.cloud";

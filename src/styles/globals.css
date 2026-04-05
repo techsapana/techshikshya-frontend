@@ -1,0 +1,205 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), "Segoe UI", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+section[id] {
+  scroll-margin-top: 96px;
+}
+
+:root {
+  --home-blue-bg: linear-gradient(
+    180deg,
+    #dbeafe 0%,
+    #eaf3ff 52%,
+    #d9ebff 100%
+  );
+  --home-blue-glow:
+    radial-gradient(
+      circle at 12% 16%,
+      rgba(59, 130, 246, 0.2),
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at 86% 14%,
+      rgba(14, 165, 233, 0.16),
+      transparent 36%
+    ),
+    radial-gradient(
+      circle at 50% 100%,
+      rgba(37, 99, 235, 0.14),
+      transparent 44%
+    );
+}
+
+.home-sky-section {
+  background: var(--home-blue-bg);
+  color: #0f172a;
+}
+
+.home-sky-glow {
+  background: var(--home-blue-glow);
+}
+
+.home-surface {
+  border: 1px solid rgba(147, 197, 253, 0.7);
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 24px 90px rgba(30, 64, 175, 0.16);
+  backdrop-filter: blur(10px);
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  display: flex;
+  width: max-content;
+  animation: scroll 25s linear infinite;
+}
+
+@keyframes scroll-rtl {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.animate-scroll-rtl {
+  display: flex;
+  width: max-content;
+  animation: scroll-rtl 120s linear infinite;
+}
+
+.marquee-fade-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 150px;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(37, 99, 235, 1),
+    rgba(37, 99, 235, 0)
+  );
+  pointer-events: none;
+  z-index: 10;
+}
+
+.marquee-fade-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 150px;
+  height: 100%;
+  background: linear-gradient(
+    to left,
+    rgba(59, 130, 246, 1),
+    rgba(59, 130, 246, 0)
+  );
+  pointer-events: none;
+  z-index: 10;
+}
+
+@keyframes team-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-team-float {
+  animation: team-float 5.5s ease-in-out infinite;
+}
+
+@keyframes enroll-ripple-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  70% {
+    transform: scale(1.16);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.16);
+    opacity: 0;
+  }
+}
+
+.enroll-ripple-btn {
+  position: relative;
+  overflow: visible;
+}
+
+.enroll-ripple-btn::before,
+.enroll-ripple-btn::after {
+  content: "";
+  position: absolute;
+  inset: -6px -6px;
+  border-radius: inherit;
+  border: 3px solid rgba(14, 165, 233, 0.72);
+  pointer-events: none;
+  z-index: 0;
+  transform: scale(1);
+  animation: enroll-ripple-ring 2.6s ease-out infinite;
+}
+
+.enroll-ripple-btn::after {
+  animation-delay: 1.3s;
+}
+
+.enroll-ripple-btn:hover::before,
+.enroll-ripple-btn:hover::after {
+  border-color: rgba(34, 211, 238, 0.9);
+}
+
+.enroll-ripple-btn:disabled::before,
+.enroll-ripple-btn:disabled::after {
+  animation: none;
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .enroll-ripple-btn::before,
+  .enroll-ripple-btn::after {
+    animation: none;
+    opacity: 0;
+  }
+}
